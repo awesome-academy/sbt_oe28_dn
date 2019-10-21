@@ -1,2 +1,14 @@
 en:
-
+  admin:
+    home:
+      title: Home page
+      content: This is admin home page
+  layouts:
+    sidebar_admin:
+      name: User name
+      home: Home
+      profile: Profile
+      user: Manage Users
+      table: Table
+      help: Help
+      contact: Contact

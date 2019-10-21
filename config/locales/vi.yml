@@ -1,1 +1,14 @@
 vi:
+  admin:
+    home:
+      title: Trang chính
+      content: Đây là trang của quản lý
+  layouts:
+    sidebar_admin:
+      name: Tên người dùng
+      home: Trang chủ
+      profile: Cá nhân
+      user: Quản lý người dùng
+      table: Thống kê
+      help: Trợ giúp
+      contact: Liên hệ
