@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/signup", to: "users#new"
   delete "/logout", to: "sessions#delete"
+  get "category/:id_category", to: "categories#show"
   namespace :admin do
     root "pages#home"
   end
 
   resources :users
+  resources :reviews
 end

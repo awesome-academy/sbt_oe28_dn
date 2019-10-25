@@ -58,6 +58,8 @@ vi:
     update_success: Cập nhật thành công
     update_fail: Cập nhật thất bại
     user_invalid: Người dùng không tồn tại
+    create_review_success: Tạo review thành công
+    create_review_fail: Tạo review thất bại
   admin:
     pages:
       home:
@@ -76,3 +78,10 @@ vi:
   gender:
     male: Nam
     female: Nữ
+  form:
+    title: Tiêu đề
+    content: Nội dung
+    description: Mô tả
+    submit: Thêm
+    update: Cập nhật
+  yourreview: Đánh giá của bạn

@@ -45,6 +45,7 @@ en:
     email: Email
     gender: Gender
     reviews: Reviews
+  signin: Signin
   username: Username
   password: Password
   email: Email
@@ -57,6 +58,8 @@ en:
     upate_success: Update Success
     update_fail: Update Fail
     user_invalid: User invalid
+    create_review_success: Review has created success!
+    create_review_fail: Review has create failed !
   admin:
     pages:
       home:
@@ -75,3 +78,10 @@ en:
   gender:
     male: Male
     female: Female
+  form:
+    title: Title
+    content: Content
+    description: Description
+    submit: Submit
+    update: Update
+  yourreview: Your Review

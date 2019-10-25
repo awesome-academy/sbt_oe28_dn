@@ -35,11 +35,11 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#"><%= t "nav.homepage" %></a></li>
-            <li><a href="#"><%= t "nav.tours" %></a></li>
-            <li><a href="#"><%= t "nav.news" %></a></li>
-            <li><a href="#"><%= t "nav.food" %></a></li>
-            <li><a href="#"><%= t "nav.place" %></a></li>
+            <li><%= link_to t("nav.homepage"), root_path %></li>
+            <li><%= link_to t("nav.tours"), "#" %></li>
+            <li><%= link_to t("nav.news"),"/category/1" %></li>
+            <li><%= link_to t("nav.food"), "/category/2" %></li>
+            <li><%= link_to t("nav.place"), "/category/3" %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <% if logged_in? %>
@@ -48,7 +48,7 @@
                   <ul class="dropdown-menu custom-drd">
                     <li><%= link_to t("nav.profile"), current_user %></li>
                     <li><%= link_to t("nav.setting"), edit_user_path(current_user) %></li>
-                    <li><%= link_to t("nav.post_review"), "#" %></li>
+                    <li><%= link_to t("nav.post_review"), new_review_path %></li>
                     <li class="divider"></li>
                     <li>
                       <%= link_to t("nav.logout"), logout_path, method: :delete %>

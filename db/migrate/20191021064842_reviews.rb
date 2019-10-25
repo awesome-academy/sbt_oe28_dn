@@ -5,6 +5,7 @@ class Reviews < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :description
       t.string :content
+      t.string :image
       t.references :user, foreign_key: true
 
       t.timestamps

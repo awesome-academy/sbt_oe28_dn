@@ -12,4 +12,3 @@ User.create!(user_name: "renk",
              full_name: "Hoang Nguyen",
              role: 0,
              gender: true)
-
