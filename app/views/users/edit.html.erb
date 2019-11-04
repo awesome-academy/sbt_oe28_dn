@@ -1,0 +1,8 @@
+<% provide :title, t("edit.title") %>
+<% provide :url, user_path  %>
+<% provide :button, t("edit.submit") %>
+
+<% flash.each do |message_type, message| %>
+  <div class="alert custom-<%= message_type %>"><%= message %></div>
+<% end %>
+<%= render "form" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191021064937) do
+ActiveRecord::Schema.define(version: 20191101024740) do
 
   create_table "bookings", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20191021064937) do
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["user_id", "created_at"], name: "index_bookings_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -60,13 +66,15 @@ ActiveRecord::Schema.define(version: 20191021064937) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "category"
     t.string   "title"
     t.string   "description"
     t.string   "content"
+    t.string   "image"
     t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_reviews_on_category_id"
     t.index ["user_id", "updated_at"], name: "index_reviews_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -75,14 +83,17 @@ ActiveRecord::Schema.define(version: 20191021064937) do
     t.string   "title"
     t.string   "description"
     t.string   "content"
+    t.string   "image"
     t.float    "price"
     t.datetime "date_in"
     t.datetime "date_out"
     t.integer  "rating",      default: 0
+    t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["rating"], name: "index_tours_on_rating"
     t.index ["title", "created_at"], name: "index_tours_on_title_and_created_at"
+    t.index ["user_id"], name: "index_tours_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,9 +102,9 @@ ActiveRecord::Schema.define(version: 20191021064937) do
     t.string   "email"
     t.string   "password_digest"
     t.integer  "role",            default: 0
-    t.boolean  "gender"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "gender",          default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end

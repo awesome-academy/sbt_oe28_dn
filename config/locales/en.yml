@@ -1,14 +1,132 @@
 en:
+  address: 103 Xuan Dieu, Thuan Phuoc town, Hai Chau District, Da Nang city
+  previous: Previous
+  next: Next
+  nav:
+    tours: TOURS
+    manage: MANAGE
+    homepage: HOME
+    reviews: REVIEWS
+    news: NEWS
+    food: FOOD
+    place: PLACE
+    account: ACCOUNT
+    profile: PROFILE
+    setting: SETTING
+    logout: LOGOUT
+    post_review: YOUR REVIEW
+    login: LOGIN
+    signup: SIGNUP
+    logout: LOGOUT
+  footer:
+    p1: "Address: "
+    p2: "Email: "
+    p3: "Phone: "
+    p4: "@Copyright Loloviet@ 2015. All role are protected."
+    p5: Develope by Sun*
+  home:
+    title: Booking tours
+    contact: CONTACT US BY HOTLINE
+  login:
+    title: Login
+    submit: LOGIN
+    create_an_account: Create An Account
+    not_registered: Not registered?
+  signup:
+    title: Signup
+    submit: SINGUP
+    signin: Sign in
+    already_registered: Already registered?
+  edit:
+    title: Edit profile
+    submit: UPDATE
+  profile:
+    title: Your Profile
+    name: Full name
+    email: Email
+    gender: Gender
+    reviews: Reviews
+  signin: Signin
+  username: Username
+  password: Password
+  email: Email
+  yourname: Your name
+  confirm_password: Confirm password
+  base_title: Travel
+  msg:
+    username_pass_invalid: Username or password invalid
+    the_form_has: The form has
+    error: error
+    upate_success: Update Success
+    update_fail: Update Fail
+    user_invalid: User invalid
+    create_review_success: Review has created success!
+    create_review_fail: Review has create failed !
+    category_invalid: Category invalid!
+    approved: New tour approved
+    update: Tour updated
+    del: Tour deleted
+    update_err: Update failed
+    tour_inv: Invalid tour
   admin:
-    home:
-      title: Home page
-      content: This is admin home page
+    pages:
+      home:
+        header: Admin name
+        title: Home page
+        content: This is admin home page
   layouts:
     sidebar_admin:
-      name: User name
+      name: Guest
       home: Home
+      tour: Tours
       profile: Profile
       user: Manage Users
       table: Table
       help: Help
       contact: Contact
+  gender:
+    male: Male
+    female: Female
+  form:
+    title: Title
+    content: Content
+    description: Description
+    submit: Submit
+    update: Update
+  yourreview: Your Review
+  tours:
+    edit:
+      save: Save changes
+      change: Change
+      title: Edit tours
+    index:
+      create: Create new tours
+      title: All tours
+    new:
+      create: Create
+      title: New tours
+    show:
+      read: Read
+      edit: Edit
+      del: Delete
+      confirm: Are you sure?
+      rate: Rating
+  table:
+    id: ID
+    title: Title
+    description: Description
+    image: Image
+    action: Action
+  err_add:
+    date: must be before the date out
+  activerecord:
+    attributes:
+      tour:
+        title: Title
+        description: Description
+        content: Content
+        price: Price
+        date_in: Date in
+        date_out: Date out
+        rating: Rating
+        image: Image

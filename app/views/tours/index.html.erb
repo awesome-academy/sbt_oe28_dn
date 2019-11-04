@@ -1,0 +1,10 @@
+<% provide :title, t("tours.index.title") %>
+<div class="tour container">
+  <h4><b> <%= yield :title %><hr/></b></h4>
+  <div class="row">
+    <%= render partial: "tour", collection: @tours %>
+  </div>
+  <div class="container">
+    <%= will_paginate @tours %>
+  </div>
+</div>
