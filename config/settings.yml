@@ -7,13 +7,14 @@ vi: "vi"
 username: 32
 email: 64
 password: 6
-review: 8
+review_page: 8
 description: 60
-news_id: "1"
-food_id: "2"
-place_id: "3"
 description_row: 3
 content_row: 10
+review: "review"
+tour: "tour"
+parent_id_default: 0
+avatar: "default-avatar.png"
 zero: 0
 tours: 8
 length:

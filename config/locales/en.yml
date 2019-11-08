@@ -63,11 +63,15 @@ en:
     create_review_success: Review has created success!
     create_review_fail: Review has create failed !
     category_invalid: Category invalid!
+    comment_fail: Comment has fail!
+    comment_delete_success: Comment has deleted!
+    comment_delete_fail: Comment has deleted failed!
     approved: New tour approved
     update: Tour updated
     del: Tour deleted
     update_err: Update failed
     tour_inv: Invalid tour
+    not_admin: You are not admin user
   admin:
     pages:
       home:
@@ -94,6 +98,12 @@ en:
     submit: Submit
     update: Update
   yourreview: Your Review
+  comment:
+    commet: Comment
+    reply: Reply
+    yourthink: What are you thinking?
+  delete_comment: Delete comment
+  are_you_sure: Are you sure?
   tours:
     edit:
       save: Save changes
@@ -111,6 +121,8 @@ en:
       del: Delete
       confirm: Are you sure?
       rate: Rating
+    search:
+      title: Search
   table:
     id: ID
     title: Title

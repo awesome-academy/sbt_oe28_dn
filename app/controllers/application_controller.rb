@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   def load_tour
     @tour = Tour.find_by id: params[:id]
     return if @tour
+
+    flash[:danger] = t "msg.tour_inv"
     redirect_to tours_path
   end
 
@@ -31,6 +33,8 @@ class ApplicationController < ActionController::Base
 
   def check_is_admin
     return if current_user.admin?
+
+    flash[:danger] = t "msg.not_admin"
     redirect_to root_path
   end
 end

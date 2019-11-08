@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
 
   def show
     @reviews = @category.reviews.newest
-                        .paginate page: params[:page], per_page: Settings.review
+                        .paginate page: params[:page],
+                           per_page: Settings.review_page
   end
 
   private

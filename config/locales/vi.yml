@@ -63,11 +63,15 @@ vi:
     create_review_success: Tạo review thành công
     create_review_fail: Tạo review thất bại
     category_invalid: Category không tồn tại!
+    comment_fail: Bình luận không thành công!
+    comment_delete_success: Xóa bình luận thành công
+    comment_delete_fail: Gặp lỗi khi xóa bình luận
     approved: Chuyến đi được khởi tạo
     update: Đã cập nhật
     del: Đã xóa
     update_err: Cập nhật không thành công
     tour_inv: Chuyến đi không khả dụng
+    not_admin: Bạn không phải là quản lý
   admin:
     pages:
       home:
@@ -84,6 +88,9 @@ vi:
       table: Thống kê
       help: Trợ giúp
       contact: Liên hệ
+  shared:
+    search_form:
+      submit: Gửi
   gender:
     male: Nam
     female: Nữ
@@ -94,6 +101,12 @@ vi:
     submit: Thêm
     update: Cập nhật
   yourreview: Đánh giá của bạn
+  comment:
+    comment: Bình luận
+    reply: Trả lời
+    yourthink: Bạn đang nghĩ gì?
+  delete_comment: Xóa bình luận
+  are_you_sure: Bạn chắc không?
   tours:
     edit:
       save: Lưu thay đổi
@@ -111,6 +124,8 @@ vi:
       del: Xóa
       confirm: Bạn chắc chắn
       rate: Đánh giá
+    search:
+      title: Tìm kiếm
   table:
     id: ID
     title: Địa điểm du lịch

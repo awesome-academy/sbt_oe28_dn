@@ -1,7 +1,12 @@
+<%= provide :title, @review.title %>
+<%= provide :comment_type, Settings.review %>
 <div class="container show-review">
   <h1 class="rv-title"> <%= @review.title %> </h1>
   <h4> <%= @review.user.full_name %> </h4>
   <br />
   <p class="rv-content"> <%= @review.content %> </p>
-
+  <div class="box-comment">
+    <%= render "comments/form_comment", parent_id: Settings.parent_id_default %>
+    <%= render partial: "comments/comment", collection: @comments_parent %>
+  </div>
 </div>

@@ -12,8 +12,10 @@ class Tour < ApplicationRecord
   validates :date_in, :date_out, presence: true, allow_nil: true
   validate :date_in_before_date_out
   validates :image, presence: true
-  UPDATE_ATTRS = :title, :description, :content, :price, :date_in, :date_out,
-    :image
+  UPDATE_ATTRS = [:title, :description, :content, :price, :date_in, :date_out,
+    :image].freeze
+
+  scope :search, ->(title){where "title LIKE ?", "%#{title}%"}
 
   private
 

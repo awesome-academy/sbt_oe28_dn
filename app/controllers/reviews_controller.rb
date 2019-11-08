@@ -2,7 +2,12 @@ class ReviewsController < ApplicationController
   before_action :logged_in_user, only: %i(new update edit)
   before_action :load_review, only: %i(show update edit)
 
-  def show; end
+  def show
+    @comment = Comment.new
+    @comments = Comment.includes(:user).select_comments(params[:id])
+                       .comment_type Settings.review
+    @comments_parent = @comments.comment_id(Settings.parent_id_default).newest
+  end
 
   def new
     @review = Review.new

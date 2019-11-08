@@ -1,7 +1,5 @@
-class Admin::ToursController < ApplicationController
-  layout "admin"
-  before_action :logged_in_user, :check_is_admin
-  before_action :load_tour, except:  %i(index new create)
+class Admin::ToursController < AdminController
+  before_action :load_tour, except: %i(index new create)
 
   def index
     @tours = Tour.order("created_at desc")

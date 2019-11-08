@@ -814,3 +814,56 @@ p {
   max-width: 300px;
   max-height: 250px;
 }
+
+.box-comment{
+  padding-right: 10%;
+  padding-left: 15%;
+  margin-top:100px;
+
+}
+.comment{
+  border-top:1px solid $white-light;
+  padding:0 0 0 35px;
+  margin-bottom: 25px;
+  position: relative;
+  width: 100%;
+  .avatar{
+    width:25px;
+    height:25px;
+    float:left;
+    position: absolute;
+    top:12px;
+    left: 0;
+    img{
+    width:20px;
+    height: 20px;
+    margin-right:10px;
+    border-radius: 2px;
+    }
+  }
+  .content-cm{
+    h5{
+      padding:0;
+    }
+    p{
+      line-height: 1em !important;
+    }
+  }
+}
+
+.showreply a{
+  margin-bottom: 10px;
+}
+.content-cm .form-comment{
+  display: none;
+}
+.delete-comment{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px;
+  a {
+  line-height: 12px;
+  font-size: 12px;
+  }
+}

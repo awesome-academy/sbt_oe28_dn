@@ -80,8 +80,17 @@ textarea {
 }
 .tour-admin{
   position: relative;
-  td img {
+  td img{
     max-width:200px;
     height: auto;
   }
+}
+
+.search-form{
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+.index-tour{
+  position: relative;
 }
