@@ -87,13 +87,12 @@ ActiveRecord::Schema.define(version: 20191101024740) do
     t.float    "price"
     t.datetime "date_in"
     t.datetime "date_out"
-    t.integer  "rating",      default: 0
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["rating"], name: "index_tours_on_rating"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["title", "created_at"], name: "index_tours_on_title_and_created_at"
     t.index ["user_id"], name: "index_tours_on_user_id"
+    t.index [nil], name: "index_tours_on_rating"
   end
 
   create_table "users", force: :cascade do |t|

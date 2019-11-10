@@ -1,0 +1,7 @@
+<div class="rating-tour" data-score="<%= rating.rating_value %>"></div>
+<% if logged_in? %>
+  <% if rating.user_id == current_user.id %>
+    <%= link_to "Edit", edit_tour_rating_path(rating.tour, rating) %>
+    <%= link_to "Delete", tour_rating_path(rating.tour, rating), method: :delete, data: { confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>

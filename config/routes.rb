@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     resources :tours
   end
 
-  resources :tours, only: %i(index show)
+  resources :tours, only: %i(index show) do
+    resources :ratings
+  end
   resources :users
   resources :reviews
   resources :categories, only: :show

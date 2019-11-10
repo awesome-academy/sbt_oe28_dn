@@ -5,5 +5,30 @@
     <%= image_tag @tour.image.url %>
     <des><%= @tour.description %></des><hr/>
     <content><%= @tour.content %></content>
+    <div><%= link_to "Rate", new_tour_rating_path(@tour) %></div>
   </div>
+  <p>
+    Average Rating
+    <div class="average-tour-rating" data-score=<%= @average_rating %>></div>
+  </p>
+  <%= render @tour.ratings %>
 </div>
+<script>
+  $(".rating-tour").raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr("data-score");
+    },
+    path: "/assets/"
+  });
+</script>
+
+<script>
+  $('.average-tour-rating').raty({
+    readOnly: true,
+    path: "/assets/",
+    score: function() {
+      return $(this).attr("data-score")
+    }
+  });
+</script>

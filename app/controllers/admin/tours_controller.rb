@@ -10,7 +10,7 @@ class Admin::ToursController < AdminController
   def edit; end
 
   def new
-    @tour = Tour.new
+    @tour = current_user.tours.build
   end
 
   def create

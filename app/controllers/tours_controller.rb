@@ -11,5 +11,11 @@ class ToursController < ApplicationController
       per_page: Settings.tours).order("created_at desc")
   end
 
-  def show; end
+  def show
+    if @tour.ratings.blank?
+      @average_rating = 0
+    else
+      @average_rating = @tour.ratings.average(:rating_value).round(2)
+    end
+  end
 end
