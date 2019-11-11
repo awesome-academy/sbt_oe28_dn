@@ -15,5 +15,7 @@
  *= require tours
  *= require slider
  *= require ratings
+ *= require jquery-ui
+ *= require social-share-button
  *= require_self
  */

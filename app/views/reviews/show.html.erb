@@ -1,10 +1,12 @@
 <%= provide :title, @review.title %>
 
 <div class="container show-review">
-  <h1 class="rv-title"> <%= @review.title %> </h1>
+  <h1 class="rv-title"> <%= @review.title %>
+    <%= social_share_button_tag(@review.title, url: review_path(@review), desc: @review.title) %>
+  </h1>
   <h4> <%= @review.user.full_name %> </h4>
   <br />
-  <p class="rv-content"> <%= @review.content %> </p>
+  <div><p class="rv-content"><%= raw @review.content %></p></div>
   <div class="panel panel-default panel-custom">
     <div class="panel-body" id="box-like">
       <% if @liked %>
@@ -16,9 +18,6 @@
   </div>
 
   <div class="box-comment">
-    <div id="box-message">
-      <%= render "shared/flash_messages" %>
-    </div>
     <div id ="box-comment">
       <%= render "comments/form_comment", parent_id: Settings.parent_id_default %>
     </div>

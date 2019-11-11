@@ -1,4 +1,8 @@
 <%= search_form_for @search, class: "form-inline" do |f| %>
-  <%= f.text_field :title_cont, class: "form-control" %>
+  <%= f.search_field :title_or_description_cont, class: "form-control" , placeholder: t(".name") %>
+  <%= t ".start" %> :
+  <%= f.text_field :date_in_gteq, class: "form-control datepicker", placeholder: t(".date_in") %>
+  <%= t ".to" %> :
+  <%= f.text_field :date_out_lteq, class: "form-control datepicker", placeholder: t(".date_out") %>
   <%= f.submit t(".submit"), class: "form-control btn-success" %>
 <% end %>

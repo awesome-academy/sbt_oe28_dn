@@ -3,6 +3,9 @@ en:
   previous: Previous
   next: Next
   del: Delete
+  user: User
+  restore: Restore
+  created_at: Created at
   nav:
     tours: TOURS
     manage: MANAGE
@@ -35,8 +38,8 @@ en:
     create_an_account: Create An Account
     not_registered: Not registered?
   signup:
-    title: Signup
-    submit: SINGUP
+    title: SIGN UP
+    submit: Sign up
     signin: Sign in
     already_registered: Already registered?
   edit:
@@ -70,7 +73,7 @@ en:
     comment_delete_fail: Comment has deleted failed!
     approved: New tour approved
     update: Tour updated
-    del: Tour deleted
+    del: Deleted
     update_err: Update failed
     tour_inv: Invalid tour
     booking_inv: Invalid booking requests
@@ -91,6 +94,7 @@ en:
     action_fail: Your action has failed
     booking_approved: Booking approved
     booking_canceled: Booking canceled
+    booking_restored: Booking restored
     booking_succeeded: Booking succeeded
     booking_failed: Booking failed
     rating_succeeded: Rating succeeded
@@ -105,6 +109,10 @@ en:
         header: Admin name
         title: Home page
         content: This is admin home page
+        user: User chart
+        empty: No datas
+        revenue: Revenue
+        revenue_chart: Revenue Chart
     categories:
       index:
         title: All Categories
@@ -136,7 +144,7 @@ en:
         title: Manage Review
         all_review: All Review
         edit: Edit
-      news:
+      new:
         title: New Review
     users:
       index:
@@ -152,6 +160,7 @@ en:
         update_role: Update role
         update: Update
         delete: Delete
+        admin: Admin
     bookings:
       index:
         title: Booking Requests
@@ -159,7 +168,7 @@ en:
         revenue: Revenue
   bookings:
     index:
-      title: Your booking Requests
+      title: Your booking requests
     new:
       title: New booking request
     edit:
@@ -227,6 +236,14 @@ en:
       submit: Submit
     search:
       title: Search
+  shared:
+    search_form:
+      submit: Search
+      name: Name contains
+      date_in: Date in
+      date_out: Date out
+      start: Start date
+      to: to
   table:
     id: ID
     title: Title

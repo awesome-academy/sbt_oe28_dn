@@ -21,4 +21,7 @@ $(document).ready(function(){
     score: 1,
     scoreName: 'rating[rating_value]'
   });
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
 });

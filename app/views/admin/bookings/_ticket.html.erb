@@ -1,11 +1,5 @@
-<% if params[:page].nil? || params[:page] == "1" %>
-  <% x = 0 %>
-<% else %>
-  <% page = params[:page].to_i - 1 %>
-  <% x = page * Settings.paginate.bookings %>
-<% end %>
 <tr>
-  <td><%= ticket_counter + x + 1 %></td>
+  <td><%= ticket_counter + page_booking + 1 %></td>
   <td><%= ticket.name %></td>
   <td><%= ticket.phone %></td>
   <td><%= number_to_currency(ticket.price) %></td>

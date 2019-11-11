@@ -13,12 +13,12 @@
         </tr>
       </thead>
       <tbody>
-          <%= render partial: "ticket", collection: @tickets %>
+        <%= render partial: "ticket", collection: @tickets %>
       </tbody>
     </table>
     <%= t ".revenue"%>: <%= number_to_currency(@sum_ticket) %>
     <div class="paginate">
-        <%= will_paginate @tickets %>
+      <%= will_paginate @tickets %>
     </div>
   <% else %>
     <i><%= t "msg.no_tickets" %></i>

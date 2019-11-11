@@ -1,5 +1,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require ckeditor/init
 //= require bootstrap
+//= require chartkick
+//= require Chart.bundle
+//= require social-share-button
+//= require jquery-ui
 //= require_tree

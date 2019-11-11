@@ -1,13 +1,16 @@
-<% provide :title, t(".header") %>
+<% provide :title, current_user.full_name %>
 <div id="page-content-wrapper">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
         <h1><%= t ".title" %></h1>
-        <p><%= t ".content" %></p>
+          <%= t ".user" %> :
+          <%= line_chart User.group_by_minute(:created_at).count, xtitle: t("created_at"), ytitle: t("user") %>
+          <%= t ".revenue_chart" %> :
+          <%= column_chart Booking.joins(:tour).approved.group(:id).sum(:price),
+            xtitle: t("table.id"), ytitle: t("table.price"), legend: "bottom", messages: {empty: t(".empty")}
+          %>
+          <%= t ".revenue" %>: <%= number_to_currency(Booking.joins(:tour).approved.sum(:price)) %>
       </div>
     </div>
   </div>

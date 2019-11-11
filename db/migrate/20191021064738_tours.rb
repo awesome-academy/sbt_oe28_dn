@@ -6,8 +6,8 @@ class Tours < ActiveRecord::Migration[5.0]
       t.string :content
       t.string :image
       t.float :price
-      t.datetime :date_in
-      t.datetime :date_out
+      t.date :date_in
+      t.date :date_out
       t.references :user, foreign_key: true
 
       t.timestamps

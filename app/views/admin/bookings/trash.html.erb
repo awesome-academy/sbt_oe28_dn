@@ -1,0 +1,24 @@
+<% provide :title, t("restore") %>
+<div class="tour container">
+  <h4><b> <%= yield :title %><hr/></b></h4>
+  <% if @trashes.any? %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="w-5"><%= t("table.id") %></th>
+          <th class="w-30"><%= t("table.name") %></th>
+          <th class="w-35"><%= t("table.phone") %></th>
+          <th class="w-30"><%= t("table.verified") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "trash", collection: @trashes %>
+      </tbody>
+    </table>
+    <div class="paginate">
+      <%= will_paginate @trashes %>
+    </div>
+  <% else %>
+    <i><%= t "msg.no_bookings" %></i>
+  <% end %>
+</div>

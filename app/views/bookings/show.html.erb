@@ -4,7 +4,7 @@
     <h1><%= yield(:title) %></h1>
     <%= image_tag @tour.image.url %>
     <des><%= @tour.description %></des><hr/>
-    <content><%= @tour.content %></content>
+    <content><%= @tour.content.html_safe %></content>
     <div>
       <%= t ".price" %>: <%=  number_to_currency(@tour.price) %><br>
       <%= t ".date_in" %>: <%=  l @tour.date_in, format: :short %><br>
@@ -20,7 +20,7 @@
       <br>
     </div>
   </div>
-  <% unless @booking.approved? || @booking.canceled? %>
+  <% if @booking.in_progress? %>
     <%= link_to cancel_tour_booking_path(@tour, @booking), method: :patch do %>
       <button class="btn btn-warning btn-cc-tour"><%= t ".cancel" %></button>
     <% end %>

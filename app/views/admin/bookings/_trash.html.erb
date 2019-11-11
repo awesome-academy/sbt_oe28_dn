@@ -1,0 +1,13 @@
+<tr>
+  <td><%= trash_counter + page_booking + 1 %></td>
+  <td><%= trash.name %></td>
+  <td><%= trash.phone %></td>
+  <td>
+    <%= link_to restore_admin_booking_path(trash), method: :patch do %>
+      <button class="btn btn-success"><%= t "restore" %></button>
+    <% end %>
+    <%= link_to admin_booking_path(trash), method: :delete, data: { confirm: t("are_you_sure") } do %>
+      <button class="btn btn-danger"><%= t "del" %></button>
+    <% end %>
+  </td>
+</tr>

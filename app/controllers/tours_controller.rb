@@ -2,15 +2,15 @@ class ToursController < ApplicationController
   before_action :load_tour, only: :show
 
   def index
-    @search = Tour.ransack(params[:q])
+    @search = Tour.ransack params[:q]
     @tours = @search.result.newest.paginate(page: params[:page],
       per_page: Settings.paginate.tours)
   end
 
   def show
-    if logged_in?
+    if user_signed_in?
       @rating_check_exist = Rating.check_rating(current_user.id,
-        params[:id])
+        params[:id].to_i)
     end
     @average_rating = Settings.zero
     return if @tour.ratings.blank?
