@@ -1,8 +1,10 @@
 class Admin::ToursController < AdminController
   before_action :load_tour, except: %i(index new create)
+  before_action :stt, only: :index
 
   def index
-    @tours = Tour.order("created_at desc")
+    @tours = Tour.order("created_at desc").paginate(page: params[:page],
+      per_page: Settings.paginate.tours)
   end
 
   def show; end
@@ -44,5 +46,18 @@ class Admin::ToursController < AdminController
 
   def tour_params
     params.require(:tour).permit Tour::UPDATE_ATTRS
+  end
+
+  def load_tour
+    @tour = Tour.find_by id: params[:id]
+    return if @tour
+
+    flash[:danger] = t "msg.tour_inv"
+    redirect_to admin_tours_path
+  end
+
+  def stt
+    params[:page] = 1 unless params[:page]
+    @stt = Settings.paginate.bookings * (params[:page].to_i - 1)
   end
 end

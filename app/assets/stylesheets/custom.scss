@@ -867,3 +867,26 @@ p {
   font-size: 12px;
   }
 }
+#show-tour{
+  position: relative;
+}
+
+.btn-cc-tour{
+  position: absolute;
+  right: 20px;
+}
+
+.btn-back{
+  position: absolute;
+  left: 15px;
+}
+
+.btn-edit{
+  position: absolute;
+  right: 190px;
+}
+
+.btn-delete{
+  position: absolute;
+  right: 340px;
+}

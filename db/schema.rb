@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20191101024740) do
 
   create_table "bookings", force: :cascade do |t|
     t.string   "name"
-    t.integer  "phone"
-    t.integer  "status",     default: 0
+    t.string   "phone"
+    t.integer  "status",     default: 2
     t.float    "price"
     t.datetime "date_in"
     t.datetime "date_out"

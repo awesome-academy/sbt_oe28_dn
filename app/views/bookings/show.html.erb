@@ -1,0 +1,41 @@
+<% provide :title, @tour.title %>
+<div class="tour container" id="show-tour">
+  <div class="show-tour show-img" >
+    <h1><%= yield(:title) %></h1>
+    <%= image_tag @tour.image.url %>
+    <des><%= @tour.description %></des><hr/>
+    <content><%= @tour.content %></content>
+    <div>
+      <%= t ".price" %>: <%=  @tour.price %><br>
+      <%= t ".date_in" %>: <%=  @tour.date_in %><br>
+      <%= t ".date_out" %>: <%=  @tour.date_out %><br>
+      <%= t ".status" %>:
+        <% if @booking.status == "canceled" %>
+          <div class="label label-danger"><%= t "canceled" %></div>
+        <% elsif @booking.status == "in_progress" %>
+          <div class="label label-warning"><%= t "in_progress" %></div>
+        <% else %>
+          <div class="label label-success"><%= t "approved" %></div>
+        <% end %>
+      <br>
+    </div>
+  </div>
+  <% unless @booking.approved? || @booking.canceled? %>
+    <%= link_to tour_bookings_cancel_path(@tour, @booking), method: :patch do %>
+      <button class="btn btn-warning btn-cc-tour"><%= t ".cancel" %></button>
+    <% end %>
+
+    <%= link_to edit_tour_booking_path(@booking.tour, @booking) do %>
+      <button class="btn btn-warning btn-edit"><%= t ".edit" %></button>
+    <% end %>
+
+    <%= link_to tour_booking_path(@booking.tour, @booking), method: :delete, data: { confirm: t("are_you_sure") } do %>
+      <button class="btn btn-warning btn-delete"><%= t ".del" %></button>
+    <% end %>
+  <% end %>
+
+  <%= link_to tours_path do %>
+    <button class="btn btn-warning btn-back"><%= t ".back" %></button>
+  <% end %>
+</div>
+

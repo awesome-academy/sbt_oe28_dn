@@ -1,10 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :find_tour
-  before_action :load_rating, only: %i(edit update destroy)
-
-  def new
-    @rating = Rating.new
-  end
+  before_action :find_tour, :logged_in_user
 
   def create
     @rating = Rating.new rating_params
@@ -12,24 +7,10 @@ class RatingsController < ApplicationController
     @rating.user_id = current_user.id
 
     if @rating.save
-      redirect_to @tour
+      flash[:success] = t "msg.rating_succeeded"
     else
-      render :new
+      flash[:info] = t "msg.rating_failed"
     end
-  end
-
-  def edit; end
-
-  def update
-    if @rating.update rating_params
-      redirect_to @tour
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @rating.destroy
     redirect_to @tour
   end
 
@@ -40,10 +21,10 @@ class RatingsController < ApplicationController
   end
 
   def find_tour
-    @tour = Tour.find_by params[:tour_id], params[:id]
-  end
+    @tour = Tour.find_by id: params[:tour_id]
+    return if @tour
 
-  def load_rating
-    @rating = Rating.find_by id: params[:id]
+    flash[:danger] = t "msg.tour_inv"
+    redirect_to tours_path
   end
 end

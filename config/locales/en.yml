@@ -18,6 +18,7 @@ en:
     login: LOGIN
     signup: SIGNUP
     logout: LOGOUT
+    booking: BOOKING REQUESTS
   footer:
     p1: "Address: "
     p2: "Email: "
@@ -71,13 +72,47 @@ en:
     del: Tour deleted
     update_err: Update failed
     tour_inv: Invalid tour
+    booking_inv: Invalid booking requests
     not_admin: You are not admin user
+    booking_approved: Booking approved
+    booking_canceled: Booking canceled
+    booking_succeeded: Booking succeeded
+    booking_failed: Booking failed
+    rating_succeeded: Rating succeeded
+    rating_failed: Rating failed
+    user: You are not allowed
+    no_bookings: No booking requests
+    no_tours: No tours
+    no_tickets: No tickets
   admin:
     pages:
       home:
         header: Admin name
         title: Home page
         content: This is admin home page
+    bookings:
+      index:
+        title: Booking Requests
+      ticket:
+        revenue: Revenue
+  bookings:
+    index:
+      title: Your booking Requests
+    new:
+      title: New booking request
+    edit:
+      title: Edit booking request
+    show:
+      cancel: Cancel booking request
+      edit: Edit booking request
+      del: Delete booking request
+      back: Back
+      price: Price
+      date_in: Date in
+      date_out: Date out
+      status: Status
+    form:
+      submit: Submit
   layouts:
     sidebar_admin:
       name: Guest
@@ -88,6 +123,8 @@ en:
       table: Table
       help: Help
       contact: Contact
+      booking: Booking Requests
+      revenue: Revenue
   gender:
     male: Male
     female: Female
@@ -97,6 +134,8 @@ en:
     description: Description
     submit: Submit
     update: Update
+    name: Your name
+    phone: Your phone
   yourreview: Your Review
   comment:
     commet: Comment
@@ -120,7 +159,10 @@ en:
       edit: Edit
       del: Delete
       confirm: Are you sure?
+      avg_rate: Average Rating
       rate: Rating
+      book: Booking
+      submit: Submit
     search:
       title: Search
   table:
@@ -129,8 +171,16 @@ en:
     description: Description
     image: Image
     action: Action
+    name: Name
+    phone: Phone
+    verified: Verified
+    status: Status
+    price: Price
   err_add:
     date: must be before the date out
+  approved: Approved
+  canceled: Canceled
+  in_progress: In Progress
   activerecord:
     attributes:
       tour:

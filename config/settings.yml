@@ -16,8 +16,15 @@ tour: "tour"
 parent_id_default: 0
 avatar: "default-avatar.png"
 zero: 0
-tours: 8
+paginate:
+  tours: 8
+  bookings: 12
 length:
   title: 3
   content: 9000
   description: 140
+  name: 3
+  phone: 10
+booking_status:
+  approved: "approved"
+  canceled: "canceled"

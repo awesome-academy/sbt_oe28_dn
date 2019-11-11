@@ -2,8 +2,8 @@ class Bookings < ActiveRecord::Migration[5.0]
   def change
     create_table :bookings do |t|
         t.string :name
-        t.integer :phone
-        t.integer :status, default: "0"
+        t.string :phone
+        t.integer :status, default: 2
         t.float :price
         t.datetime :date_in
         t.datetime :date_out

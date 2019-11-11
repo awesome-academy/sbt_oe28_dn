@@ -1,0 +1,15 @@
+<tr>
+  <td><%= @stt +=1 %></td>
+  <td><%= ticket.name %></td>
+  <td><%= ticket.phone %></td>
+  <td><%= ticket.price %></td>
+  <td>
+    <% if ticket.status == "canceled" %>
+      <div class="label label-danger"><%= t "canceled" %></div>
+    <% elsif ticket.status == "in_progress" %>
+      <div class="label label-warning"><%= t "in_progress" %></div>
+    <% else %>
+      <div class="label label-success"><%= t "approved" %></div>
+    <% end %>
+  </td>
+</tr>

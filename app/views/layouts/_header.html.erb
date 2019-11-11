@@ -49,6 +49,7 @@
                     <% if check_is_admin? %>
                       <li><%= link_to t("nav.manage"), admin_root_path %></li>
                     <% end %>
+                    <li><%= link_to t("nav.booking"), bookings_path %></li>
                     <li><%= link_to t("nav.post_review"), new_review_path %></li>
                     <li class="divider"></li>
                     <li>
