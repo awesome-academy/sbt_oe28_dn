@@ -1,5 +1,11 @@
+<% if params[:page].nil? || params[:page] == "1" %>
+  <% x = 0 %>
+<% else %>
+  <% page = params[:page].to_i - 1 %>
+  <% x = page * Settings.paginate.users %>
+<% end %>
 <tr>
-  <td><%= user_counter += 1 %></td>
+  <td><%= user_counter + x + 1 %></td>
   <td><%= user.full_name %></td>
   <td><%= user.user_name %></td>
   <td><%= user.email %></td>

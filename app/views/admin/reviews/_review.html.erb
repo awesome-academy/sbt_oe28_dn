@@ -1,5 +1,11 @@
+<% if params[:page].nil? || params[:page] == "1" %>
+  <% x = 0 %>
+<% else %>
+  <% page = params[:page].to_i - 1 %>
+  <% x = page * Settings.paginate.reviews %>
+<% end %>
 <tr>
-  <td><%= review_counter += 1 %></td>
+  <td><%= review_counter + x + 1 %></td>
   <td><%= review.title %></td>
   <td class="img-review"><%= image_tag review.image.url %></td>
   <td><%= review.description %></td>

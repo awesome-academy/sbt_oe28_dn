@@ -1,7 +1,12 @@
 class Tour < ApplicationRecord
   mount_uploader :image, TourImageUploader
 
-  belongs_to :user
+  has_many :users, through: :bookings
+  has_many :users, through: :ratings
+  has_many :ratings, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
+  delegate :approved, to: :bookings
 
   validates :title, presence: true, length: {minimum: Settings.length.title}
   validates :description, presence: true,
@@ -15,7 +20,7 @@ class Tour < ApplicationRecord
   UPDATE_ATTRS = [:title, :description, :content, :price, :date_in, :date_out,
     :image].freeze
 
-  scope :search, ->(title){where "title LIKE ?", "%#{title}%"}
+  scope :newest, ->{order created_at: :desc}
 
   private
 

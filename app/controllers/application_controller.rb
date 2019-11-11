@@ -19,16 +19,8 @@ class ApplicationController < ActionController::Base
     redirect_to signin_url
   end
 
-  def load_tour
-    @tour = Tour.find_by id: params[:id]
-    return if @tour
-
-    flash[:danger] = t "msg.tour_inv"
-    redirect_to tours_path
-  end
-
   def load_categories
-    @categories = Category.all
+    @categories = Category.newest.pluck :name, :id
   end
 
   def check_is_admin

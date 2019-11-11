@@ -1,0 +1,10 @@
+<%= form_for @booking, url: tour_bookings_path do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: t("form.name"), class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :phone, placeholder: t("form.phone"), class: "form-control" %>
+    </div>
+  <%= f.submit t(".submit"), class: "btn btn-primary btn-cus" %>
+<% end %>
