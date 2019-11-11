@@ -18,6 +18,7 @@ en:
     login: LOGIN
     signup: SIGNUP
     logout: LOGOUT
+    booking: BOOKING REQUESTS
   footer:
     p1: "Address: "
     p2: "Email: "
@@ -71,8 +72,8 @@ en:
     del: Tour deleted
     update_err: Update failed
     tour_inv: Invalid tour
+    booking_inv: Invalid booking requests
     not_admin: You are not admin user
-    action_fail: Your action has fail
     create_cate_success: Create category success!
     create_cate_fail: Create category fail!
     delete_cate_success: Delete category success!
@@ -86,6 +87,17 @@ en:
     no_categories: Don't have categories yet!
     create_user_success: Create User Success
     create_user_fail: Create User Fail
+    action_fail: Your action has failed
+    booking_approved: Booking approved
+    booking_canceled: Booking canceled
+    booking_succeeded: Booking succeeded
+    booking_failed: Booking failed
+    rating_succeeded: Rating succeeded
+    rating_failed: Rating failed
+    user: You are not allowed
+    no_bookings: No booking requests
+    no_tours: No tours
+    no_tickets: No tickets
   admin:
     pages:
       home:
@@ -139,6 +151,29 @@ en:
         update_role: Update role
         update: Update
         delete: Delete
+    bookings:
+      index:
+        title: Booking Requests
+      ticket:
+        revenue: Revenue
+  bookings:
+    index:
+      title: Your booking Requests
+    new:
+      title: New booking request
+    edit:
+      title: Edit booking request
+    show:
+      cancel: Cancel booking request
+      edit: Edit booking request
+      del: Delete booking request
+      back: Back
+      price: Price
+      date_in: Date in
+      date_out: Date out
+      status: Status
+    form:
+      submit: Submit
   layouts:
     sidebar_admin:
       name: Guest
@@ -149,6 +184,8 @@ en:
       table: Table
       help: Help
       contact: Contact
+      booking: Booking Requests
+      revenue: Revenue
   gender:
     male: Male
     female: Female
@@ -158,6 +195,8 @@ en:
     description: Description
     submit: Submit
     update: Update
+    name: Your name
+    phone: Your phone
   yourreview: Your Review
   comment:
     comment: Comment
@@ -181,7 +220,10 @@ en:
       edit: Edit
       del: Delete
       confirm: Are you sure?
+      avg_rate: Average Rating
       rate: Rating
+      book: Booking
+      submit: Submit
     search:
       title: Search
   table:
@@ -190,8 +232,16 @@ en:
     description: Description
     image: Image
     action: Action
+    name: Name
+    phone: Phone
+    verified: Verified
+    status: Status
+    price: Price
   err_add:
     date: must be before the date out
+  approved: Approved
+  canceled: Canceled
+  in_progress: In Progress
   activerecord:
     attributes:
       tour:
@@ -205,3 +255,16 @@ en:
         image: Image
   like_review: Like Review
   unlike_review: Unlike Review
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        delimiter: ','
+        separator: '.'
+        significant: true
+        strip_insignificant_zeros: true
+        raise: true
+        unit: $
+

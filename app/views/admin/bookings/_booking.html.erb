@@ -1,0 +1,19 @@
+<tr>
+  <td><%= booking_counter +=1 %></td>
+  <td><%= booking.name %></td>
+  <td><%= booking.phone %></td>
+  <td>
+  <%= link_to t("approved"), approve_tour_booking_path(booking.tour, booking), method: :patch %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to t("canceled"), cancel_tour_booking_path(booking.tour, booking), method: :patch %>
+  </td>
+  <td>
+    <% if booking.canceled? %>
+      <div class="label label-danger"><%= t "canceled" %></div>
+    <% elsif booking.in_progress? %>
+      <div class="label label-warning"><%= t "in_progress" %></div>
+    <% else %>
+      <div class="label label-success"><%= t "approved" %></div>
+    <% end %>
+  </td>
+</tr>

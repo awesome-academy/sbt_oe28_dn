@@ -19,7 +19,5 @@
     <a class="showreply"><%= t "comment.reply" %></a>
     <%= render partial: "comments/form_comment", locals: {parent_id: comment.id} %>
     <%= render partial: "comments/children_comment" , collection: comments_child(comment.id) %>
-
   </div>
 </div>
-

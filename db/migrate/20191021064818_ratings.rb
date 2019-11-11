@@ -7,7 +7,6 @@ class Ratings < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :ratings, [:user_id, :updated_at]
-    add_index :ratings, [:tour_id, :updated_at]
+    add_index :ratings, [:user_id, :tour_id], unique: true
   end
 end

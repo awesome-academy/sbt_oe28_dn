@@ -18,6 +18,7 @@ vi:
     login: ĐĂNG NHẬP
     signup: ĐĂNG KÝ
     logout: ĐĂNG XUẤT
+    booking: QUẢN LÝ YÊU CẦU
   footer:
     p1: "Địa chỉ: "
     p2: "Email: "
@@ -71,6 +72,7 @@ vi:
     del: Đã xóa
     update_err: Cập nhật không thành công
     tour_inv: Chuyến đi không khả dụng
+    booking_inv: Không khả dụng
     not_admin: Bạn không phải là quản lý
     action_fail: Bạn không thể thực hiện hành động
     create_cate_success: Tạo danh mục thành công
@@ -86,6 +88,16 @@ vi:
     no_categories: Chưa có danh mục nào
     create_user_success: Tạo tài khoản thành công
     create_user_fail: Tạo tài khoản không thành công
+    booking_approved: Đã phê duyệt
+    booking_canceled: Đã hủy
+    booking_succeeded: Đặt thành công
+    booking_failed: Đặt thất bại
+    rating_succeeded: Đã gửi đánh giá
+    rating_failed: Gửi đánh giá không thành công
+    user: Bạn không được phép
+    no_bookings: Hiện chưa có đơn
+    no_tours: Hiện chưa có chuyến du lịch
+    no_tickets: Hiện chưa có đơn
   admin:
     pages:
       home:
@@ -145,6 +157,29 @@ vi:
         update_role: Chỉnh sửa vai trò
         update: Cập nhật
         delete: Xóa
+    bookings:
+      index:
+        title: Quản lý yêu cầu
+      ticket:
+        revenue: Doanh thu
+  bookings:
+    index:
+      title: Quản lý yêu cầu của bạn
+    new:
+      title: Tạo hóa đơn mới
+    edit:
+      title: Chỉnh sửa
+    show:
+      cancel: Hủy
+      edit: Chỉnh sửa
+      del: Xóa
+      back: Quay lại
+      price: Giá
+      date_in: Ngày đi
+      date_out: Ngày về
+      status: Trạng thái hiện tại
+    form:
+      submit: Tạo
   layouts:
     sidebar_admin:
       name: Khách hàng
@@ -158,9 +193,11 @@ vi:
       review: Cảm nhận
       user: Người dùng
       category: Danh mục
+      booking: Quản lý đơn hàng
+      revenue: Doanh thu
   shared:
     search_form:
-      submit: Gửi
+      submit: Tìm kiếm
   gender:
     male: Nam
     female: Nữ
@@ -170,6 +207,8 @@ vi:
     description: Mô tả
     submit: Thêm
     update: Cập nhật
+    name: Tên của bạn
+    phone: Số điện thoại
   yourreview: Đánh giá của bạn
   comment:
     comment: Bình luận
@@ -193,7 +232,10 @@ vi:
       edit: Chỉnh sửa
       del: Xóa
       confirm: Bạn chắc chắn
+      avg_rate: Đánh giá trung bình
       rate: Đánh giá
+      book: Đặt chuyến đi
+      submit: Đánh giá
     search:
       title: Tìm kiếm
   table:
@@ -202,8 +244,16 @@ vi:
     description: Tổng quan
     image: Hình ảnh
     action: Hành động
+    name: Tên khách hàng
+    phone: Số điện thoại
+    verified: Kiểm duyệt
+    status: Trạng thái hiện tại
+    price: Giá
   err_add:
     date: phải lớn hơn ngày về
+  approved: Chấp thuận
+  canceled: Hủy
+  in_progress: Đang xử lý
   activerecord:
     attributes:
       tour:
@@ -217,3 +267,14 @@ vi:
         image: Hình ảnh
   like_review: Thích bài
   unlike_review: Bỏ thích bài
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        delimiter: ','
+        separator: '.'
+        significant: true
+        strip_insignificant_zeros: true
+        raise: true
