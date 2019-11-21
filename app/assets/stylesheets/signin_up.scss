@@ -12,10 +12,9 @@
   position: relative;
   z-index: 1;
   background: $white;
-  max-width: 360px;
+  min-width: 350px;
   margin: 0 auto 20px;
   padding: 20px 45px 20px 45px;
-  text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
@@ -154,8 +153,19 @@ body {
   width:90px;
   height:auto;
   margin:0 0 20px 0;
+  margin-left: 35%;
 }
 
 .form .avatar-img{
   border-radius: 50%;
+}
+.inline-flex{
+  display: inline-flex;
+}
+.w-15{
+  width: 15px !important;
+  height: 15px;
+}
+.w-95{
+  width: 300px;
 }

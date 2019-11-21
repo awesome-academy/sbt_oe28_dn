@@ -1,0 +1,30 @@
+<% provide :title, t("signup.title") %>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t("email") %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: t("password") %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <div class="inline-flex">
+        <%= f.check_box :remember_me, class: "w-15" %>
+        <%= f.label :remember_me, class: "w-95" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit t("login.submit"), class: "submit" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
