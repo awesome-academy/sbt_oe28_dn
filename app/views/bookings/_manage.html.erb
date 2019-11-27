@@ -1,0 +1,18 @@
+<tr>
+  <td><%= manage_counter +=1 %></td>
+  <td><%= manage.name %></td>
+  <td><%= manage.phone %></td>
+  <td><%= link_to tour_booking_path(manage.tour, manage) do %>
+      <%= manage.tour.title %>
+    <% end %>
+  </td>
+  <td>
+    <% if manage.canceled? %>
+      <div class="label label-danger"><%= t "canceled" %></div>
+    <% elsif manage.in_progress? %>
+      <div class="label label-warning"><%= t "in_progress" %></div>
+    <% else %>
+      <div class="label label-success"><%= t "approved" %></div>
+    <% end %>
+  </td>
+</tr>

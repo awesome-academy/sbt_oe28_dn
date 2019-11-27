@@ -1,0 +1,26 @@
+<% provide :title, t("admin.bookings.index.title") %>
+<div class="tour container">
+  <h4><b> <%= yield :title %><hr/></b></h4>
+  <% if @tickets.any? %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="w-5"><%= t("table.id") %></th>
+          <th class="w-15"><%= t("table.name") %></th>
+          <th class="w-15"><%= t("table.phone") %></th>
+          <th class="w-20"><%= t("table.price") %></th>
+          <th class="w-25"><%= t("table.status") %></th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= render partial: "ticket", collection: @tickets %>
+      </tbody>
+    </table>
+    <%= t ".revenue"%>: <%= number_to_currency(@sum_ticket) %>
+    <div class="paginate">
+        <%= will_paginate @tickets %>
+    </div>
+  <% else %>
+    <i><%= t "msg.no_tickets" %></i>
+  <% end %>
+</div>

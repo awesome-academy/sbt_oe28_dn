@@ -16,15 +16,15 @@ tour: "tour"
 parent_id_default: 0
 avatar: "default-avatar.png"
 zero: 0
-tours: 8
 length:
   title: 3
-  content: 9000
+  content: 5000
   description: 140
-role:
-  admin: 0
-  user: 1
+  name: 3
+  phone: 10
 paginate:
   categories: 10
   users: 15
   reviews: 10
+  tours: 8
+  bookings: 12

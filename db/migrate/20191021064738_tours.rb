@@ -8,7 +8,6 @@ class Tours < ActiveRecord::Migration[5.0]
       t.float :price
       t.datetime :date_in
       t.datetime :date_out
-      t.integer :rating, default: "0"
       t.references :user, foreign_key: true
 
       t.timestamps

@@ -1,0 +1,3 @@
+<% if rating.user_id == current_user.id %>
+  <%= t("tours.show.rate") %>: <div class="rating-tour" data-score="<%= rating.rating_value %>"></div>
+<% end %>
