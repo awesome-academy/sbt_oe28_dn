@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :logged_in_user, only: %i(new update edit)
+  before_action :user_signed_in?, only: %i(new update edit)
   before_action :load_review, only: %i(show update edit)
   before_action :check_liked, only: :show
 
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
   end
 
   def check_liked
-    return unless logged_in?
+    return unless user_signed_in?
     @liked = Like.like_review(params[:id]).find_by user_id: current_user.id
   end
 end

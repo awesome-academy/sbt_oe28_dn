@@ -98,14 +98,26 @@ ActiveRecord::Schema.define(version: 20191125035008) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "user_name"
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "full_name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.integer  "role",            default: 1
-    t.boolean  "gender",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "role",                   default: 1
+    t.boolean  "gender",                 default: true
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "refresh_token"
+    t.string   "token"
+    t.string   "expires_at"
+    t.string   "name"
+    t.string   "google_app_id"
+    t.string   "channel_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

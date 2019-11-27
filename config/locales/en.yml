@@ -205,3 +205,14 @@ en:
         image: Image
   like_review: Like Review
   unlike_review: Unlike Review
+  alert:
+    password: (leave blank if you don't want to change it)
+    confirm: (we need your current password to confirm your changes)
+    minimum: character minimum
+  unhappy: Unhappy?
+  cancel_my_account: Cancel my account
+  back: Back
+  update: Update
+  forgot_password: Forgot your password?
+  change_password: Change your password?
+  reset_password: Send me reset password

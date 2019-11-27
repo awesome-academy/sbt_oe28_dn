@@ -27,3 +27,6 @@ config/application.yml
 /public/*
 public/uploads/*
 app/assets/images/*
+
+# Ignore application configuration
+/config/application.yml

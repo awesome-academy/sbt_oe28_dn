@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  USER_PARAMS = %i(user_name email full_name password password_confirmation)
+  USER_PARAMS = %i(email full_name password password_confirmation)
                 .freeze
+  USER_PARAMS_UPDATE = [:email, :full_name].freeze
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+    :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -8,38 +12,32 @@ class User < ApplicationRecord
   has_many :tours
   has_many :likes, dependent: :destroy
 
-  before_save{email.downcase!}
-  validates :user_name, presence: true, length: {maximum: Settings.username}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: {maximum: Settings.email},
-    format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  has_secure_password
-  validates :password, presence: true, length: {minimum:
-    Settings.password}, allow_nil: true
-  validates :role, presence: true
-
   enum role: [:admin, :user]
 
   scope :newest, ->{order created_at: :desc}
 
-  class << self
-    def digest string
-      if cost = ActiveModel::SecurePassword.min_cost
-        BCrypt::Engine::MIN_COST
-      else
-        BCrypt::Engine.cost
-      end
-      BCrypt::Password.create string, cost: cost
-    end
+  validates :full_name, presence: true, length: {maximum: 50}
 
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
+  def is_admin?
+    admin?
   end
 
-  def authenticated? attribute, token
-    digest = send("#{attribute}_digest")
-    return false unless digest
-    BCrypt::Password.new(digest).is_password?(token)
+  def self.from_omniauth auth
+    user = where(email: auth.info["email"]).first
+    return user if user.present?
+    password = Devise.friendly_token[0, 20]
+    User.create(
+      refresh_token: auth.credentials.refresh_token,
+      token: auth.credentials.token,
+      expires_at: Time.at(auth.credentials.expires_at),
+      uid: auth.uid,
+      email: auth.info["email"],
+      name: auth.info["name"],
+      full_name: auth.info["name"],
+      google_app_id: ENV["google_app_id"],
+      channel_id: ENV["channel_id"],
+      password: password,
+      password_confirmation: password
+    )
   end
 end
