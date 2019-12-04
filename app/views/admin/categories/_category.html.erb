@@ -1,6 +1,12 @@
+<% if params[:page].nil? || params[:page] == "1" %>
+  <% x = 0 %>
+<% else %>
+  <% page = params[:page].to_i - 1 %>
+  <% x = page * Settings.paginate.categories %>
+<% end %>
 <tr>
-  <td><%= category_counter += 1 %></td>
-  <td><%= category.name %></td>
+  <td><%= category_counter + x + 1 %></td>
+  <td><%= t "nav.#{category.name}" %></td>
   <td>
     <%= link_to t(".delete"), admin_category_path(category.id), method: :delete, data: { confirm: t("are_you_sure") } %>
     <%= link_to t(".edit"), edit_admin_category_path(category.id) %>

@@ -14,18 +14,13 @@ ActiveRecord::Schema.define(version: 20191125035008) do
 
   create_table "bookings", force: :cascade do |t|
     t.string   "name"
-    t.integer  "phone"
-    t.integer  "status",     default: 0
-    t.float    "price"
-    t.datetime "date_in"
-    t.datetime "date_out"
+    t.string   "phone"
+    t.integer  "status",     default: 2
     t.integer  "user_id"
     t.integer  "tour_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.index ["tour_id", "created_at"], name: "index_bookings_on_tour_id_and_created_at"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
-    t.index ["user_id", "created_at"], name: "index_bookings_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -60,9 +55,8 @@ ActiveRecord::Schema.define(version: 20191125035008) do
     t.integer  "rating_value"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["tour_id", "updated_at"], name: "index_ratings_on_tour_id_and_updated_at"
     t.index ["tour_id"], name: "index_ratings_on_tour_id"
-    t.index ["user_id", "updated_at"], name: "index_ratings_on_user_id_and_updated_at"
+    t.index ["user_id", "tour_id"], name: "index_ratings_on_user_id_and_tour_id", unique: true
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -88,13 +82,12 @@ ActiveRecord::Schema.define(version: 20191125035008) do
     t.float    "price"
     t.datetime "date_in"
     t.datetime "date_out"
-    t.integer  "rating",      default: 0
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["rating"], name: "index_tours_on_rating"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["title", "created_at"], name: "index_tours_on_title_and_created_at"
     t.index ["user_id"], name: "index_tours_on_user_id"
+    t.index [nil], name: "index_tours_on_rating"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,25 @@
+<% provide :title, t(".title") %>
+<div class="tour container">
+  <h4><b> <%= yield :title %><hr/></b></h4>
+  <% if @bookings.any? %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="w-5"><%= t("table.id") %></th>
+          <th class="w-15"><%= t("table.name") %></th>
+          <th class="w-15"><%= t("table.phone") %></th>
+          <th class="w-20"><%= t("table.verified") %></th>
+          <th class="w-25"><%= t("table.status") %></th>
+        </tr>
+      </thead>
+      <tbody>
+          <%= render partial: "booking", collection: @bookings %>
+      </tbody>
+    </table>
+    <div class="paginate">
+      <%= will_paginate @bookings %>
+    </div>
+  <% else %>
+    <i><%= t "msg.no_bookings" %></i>
+  <% end %>
+</div>

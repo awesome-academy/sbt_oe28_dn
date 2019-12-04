@@ -1,8 +1,10 @@
 class Admin::ToursController < AdminController
   before_action :load_tour, except: %i(index new create)
+  before_action :is_tour_approved_empty?, only: %i(update destroy)
 
   def index
-    @tours = Tour.order("created_at desc")
+    @tours = Tour.newest.paginate(page: params[:page],
+      per_page: Settings.paginate.tours)
   end
 
   def show; end
@@ -10,7 +12,7 @@ class Admin::ToursController < AdminController
   def edit; end
 
   def new
-    @tour = Tour.new
+    @tour = current_user.tours.build
   end
 
   def create
@@ -19,6 +21,7 @@ class Admin::ToursController < AdminController
       flash[:info] = t "msg.approved"
       render :show
     else
+      flash[:danger] = t "msg.action_fail"
       render :new
     end
   end
@@ -35,14 +38,34 @@ class Admin::ToursController < AdminController
   end
 
   def destroy
-    return unless @tour.destroy
-    flash[:success] = t "msg.del"
+    if @tour.destroy
+      flash[:success] = t "msg.del"
+    else
+      flash[:danger] = t "msg.action_fail"
+    end
     redirect_to admin_tours_path
+  end
+
+  protected
+
+  def is_tour_approved_empty?
+    return if @tour.approved.empty?
+
+    flash[:danger] = t "msg.action_fail"
+    redirect_to :back
   end
 
   private
 
   def tour_params
     params.require(:tour).permit Tour::UPDATE_ATTRS
+  end
+
+  def load_tour
+    @tour = Tour.find_by id: params[:id]
+    return if @tour
+
+    flash[:danger] = t "msg.tour_inv"
+    redirect_to admin_tours_path
   end
 end

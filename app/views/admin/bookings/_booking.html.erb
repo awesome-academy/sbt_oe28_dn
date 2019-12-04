@@ -1,0 +1,44 @@
+<% if params[:page].nil? || params[:page] == "1" %>
+  <% x = 0 %>
+<% else %>
+  <% page = params[:page].to_i - 1 %>
+  <% x = page * Settings.paginate.bookings %>
+<% end %>
+<tr>
+  <td><%= booking_counter + x + 1 %></td>
+  <td><%= booking.name %></td>
+  <td><%= booking.phone %></td>
+  <td>
+    <% if booking.canceled? %>
+      <%= link_to approve_admin_booking_path(booking), method: :patch do %>
+        <button class="btn btn-success"><%= t "approved" %></button>
+      <% end %>
+      <%= link_to tour_booking_path(booking.tour, booking), method: :delete, data: { confirm: t("are_you_sure") } do %>
+        <button class="btn btn-danger"><%= t "del" %></button>
+      <% end %>
+    <% elsif booking.approved? %>
+      <%= link_to cancel_tour_booking_path(booking.tour, booking), method: :patch do %>
+        <button class="btn btn-warning"><%= t "canceled" %></button>
+      <% end %>
+    <% else %>
+      <%= link_to approve_admin_booking_path(booking), method: :patch do %>
+        <button class="btn btn-success"><%= t "approved" %></button>
+      <% end %>
+      <%= link_to cancel_tour_booking_path(booking.tour, booking), method: :patch do %>
+        <button class="btn btn-warning"><%= t "canceled" %></button>
+      <% end %>
+      <%= link_to tour_booking_path(booking.tour, booking), method: :delete, data: { confirm: t("are_you_sure") } do %>
+        <button class="btn btn-danger"><%= t "del" %></button>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <% if booking.canceled? %>
+      <div class="label label-danger"><%= t "canceled" %></div>
+    <% elsif booking.in_progress? %>
+      <div class="label label-warning"><%= t "in_progress" %></div>
+    <% else %>
+      <div class="label label-success"><%= t "approved" %></div>
+    <% end %>
+  </td>
+</tr>
