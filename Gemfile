@@ -35,12 +35,16 @@ gem "will_paginate", "3.1.6"
 
 group :development, :test do
   gem "byebug", platform: :mri
+  gem "factory_bot_rails"
   gem "rubocop", "~> 0.54.0", require: false
+  gem "rspec-rails", "~> 3.8"
+  gem "shoulda-matchers", "~> 3.1", ">= 3.1.1"
   gem "sqlite3", "1.3.13"
 end
 
 group :development do
   gem "listen", "~> 3.0.5"
+  gem "rspec-rails", "~> 3.8"
   gem "pry-rails"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
