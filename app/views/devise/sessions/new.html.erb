@@ -1,0 +1,29 @@
+<% provide :title, t("login.title") %>
+
+<h2><%= t "login.title" %></h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "login-form"}) do |f| %>
+
+  <div class="devise-field">
+    <%= f.label t("email") %><sub id="star"> * </sub>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t("email") %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label t("password") %><sub id="star"> * </sub>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: t("password") %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="remember-cus">
+      <%= f.label t(".remember") %>
+      <%= f.check_box :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit t("login.submit"), class: "submit" %>
+  </div>
+<% end %>
+
+<center><%= render "devise/shared/links" %></center>

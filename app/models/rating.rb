@@ -5,5 +5,5 @@ class Rating < ApplicationRecord
   UPDATE_ATTRS = [:rating_value].freeze
 
   scope :check_rating,
-    ->(uid, tid){where "user_id = ? AND tour_id = ?", uid, tid}
+    ->(user_id, tour_id){where "user_id = ? AND tour_id = ?", user_id, tour_id}
 end

@@ -1,11 +1,5 @@
-<% if params[:page].nil? || params[:page] == "1" %>
-  <% x = 0 %>
-<% else %>
-  <% page = params[:page].to_i - 1 %>
-  <% x = page * Settings.paginate.bookings %>
-<% end %>
 <tr>
-  <td><%= manage_counter + x + 1 %></td>
+  <td><%= manage_counter + page_booking + 1 %></td>
   <td><%= manage.name %></td>
   <td><%= manage.phone %></td>
   <td><%= link_to tour_booking_path(manage.tour, manage) do %>

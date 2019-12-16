@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :load_tour, :logged_in_user
+  before_action :load_tour, :authenticate_user!
 
   def create
     @rating = current_user.ratings.build rating_params
@@ -20,7 +20,7 @@ class RatingsController < ApplicationController
   end
 
   def load_tour
-    @tour = Tour.find_by id: params[:tour_id]
+    @tour = Tour.find_by id: params[:tour_id].to_i
     return if @tour
 
     flash[:danger] = t "msg.tour_inv"

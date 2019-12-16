@@ -1,22 +1,24 @@
-<% if params[:page].nil? || params[:page] == "1" %>
-  <% x = 0 %>
-<% else %>
-  <% page = params[:page].to_i - 1 %>
-  <% x = page * Settings.paginate.users %>
-<% end %>
 <tr>
-  <td><%= user_counter + x + 1 %></td>
+  <td><%= user_counter + page_user + 1 %></td>
   <td><%= user.full_name %></td>
-  <td><%= user.user_name %></td>
   <td><%= user.email %></td>
+  <td><%= user.role %></td>
   <td>
-    <%= form_for user,url: admin_user_path(user.id), html: {class: "form-inline"} do |f| %>
-      <%= f.text_field :role, class: "form-control role-input" %>
-      <button class="btn btn-warning"><%= t ".update" %></button>
+    <% if user.admin? %>
+      <%= link_to user_admin_user_path(user), method: :patch do %>
+        <button class="btn btn-warning"><%= t "user" %></button>
+      <% end %>
+    <% else %>
+      <%= link_to admin_admin_user_path(user), method: :patch do %>
+        <button class="btn btn-success"><%= t ".admin" %></button>
+      <% end %>
     <% end %>
   </td>
   <td>
-    <%= link_to t(".delete"), admin_user_path(user.id), method: :delete, data: { confirm: t("are_you_sure") } %>
-
+    <% if can? :destroy, user %>
+      <% if user.user? %>
+        <%= link_to t(".delete"), admin_user_path(user.id), method: :delete, data: { confirm: t("are_you_sure") } %>
+      <% end %>
+    <% end %>
   </td>
 </tr>

@@ -16,6 +16,7 @@ tour: "tour"
 parent_id_default: 0
 avatar: "default-avatar.png"
 zero: 0
+one: "1"
 two: 2
 length:
   title: 3

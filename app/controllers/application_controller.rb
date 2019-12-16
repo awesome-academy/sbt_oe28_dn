@@ -1,10 +1,28 @@
 class ApplicationController < ActionController::Base
+  layout :layout_by_resource
   protect_from_forgery with: :exception
   before_action :set_locale, :load_categories
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  include SessionsHelper
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit :sign_up, keys: [:full_name]
+    devise_parameter_sanitizer.permit :account_update, keys: [:full_name]
+  end
 
   private
+
+  rescue_from CanCan::AccessDenied do
+    flash[:danger] = t "msg.user"
+    redirect_back fallback_location: root_path
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:danger] = t "msg.booking_inv"
+    redirect_back fallback_location: root_path
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
@@ -13,19 +31,21 @@ class ApplicationController < ActionController::Base
     {locale: I18n.locale}
   end
 
-  def logged_in_user
-    return if logged_in?
-    store_location
-    redirect_to signin_url
-  end
-
   def load_categories
-    @categories = Category.newest.pluck :name, :id
+    @categories = Category.newest
   end
 
   def check_is_admin
-    return if check_is_admin?
+    return if current_user.admin?
     flash[:danger] = t "msg.not_admin"
     redirect_to root_path
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      "users_sessions"
+    else
+      "application"
+    end
   end
 end

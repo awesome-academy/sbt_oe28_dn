@@ -1,30 +1,44 @@
 <%= form_for @tour, url: yield(:url) do |f| %>
   <%= render "shared/error_messages", object: f.object  %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title, class: "form-control" %>
+  <div class="tour-field">
+    <%= f.label :title %><sub id="star"> * </sub>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description, class: "form-control" %>
+  <div class="tour-field">
+    <%= f.label :description %><sub id="star"> * </sub>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
 
-  <%= f.label :content %>
-  <%= f.text_area :content, class: "form-control" %>
+  <div class="tour-field">
+    <%= f.label :content %><sub id="star"> * </sub>
+    <%= f.cktext_area :content, class: "form-control" %>
+  </div>
 
-  <%= f.label :price %>
-  <%= f.number_field :price, class: "form-control" %>
+  <div class="tour-field">
+    <%= f.label :price %><sub id="star"> * </sub>
+    <%= f.number_field :price, class: "form-control" %>
+  </div>
 
-  <%= f.label :date_in %>
-  <%= f.datetime_field :date_in, class: "form-control" %>
+  <div class="tour-form">
+    <%= f.label :date_in %><sub id="star"> * </sub>
+    <%= f.text_field :date_in, class: "datepicker" %>
+  </div>
 
-  <%= f.label :date_out %>
-  <%= f.datetime_field :date_out, class: "form-control" %>
+  <div class="tour-form">
+    <%= f.label :date_out %><sub id="star"> * </sub>
+    <%= f.text_field :date_out, class: "datepicker" %>
+  </div>
 
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <div class="show-img">
-    <% if f.object.image? %>
-      <%= image_tag f.object.image %>
-    <% end %>
+  <div class="tour-field">
+    <%= f.label :image %><sub id="star"> * </sub>
+    <%= f.file_field :image %>
+    <div class="show-img">
+      <% if f.object.image? %>
+        <%= image_tag f.object.image %>
+      <% end %>
+    </div>
   </div>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-cus" %>

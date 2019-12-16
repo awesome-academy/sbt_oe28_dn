@@ -10,7 +10,8 @@
   <body>
     <div class="login-page">
       <div class="form">
-        <%= link_to image_tag("logo.png", alt: t("rails_logo"), class: "img-logo"), root_path %>
+        <%= render "shared/flash_messages" %>
+        <h2><%= link_to image_tag("logo.png", alt: t("rails_logo"), class: "img-logo"), root_path %></h2>
         <%= yield %>
       </div>
     </div>

@@ -29,6 +29,7 @@ class Admin::ToursController < AdminController
   def update
     @tour.attributes = tour_params
     if @tour.save
+      # send email
       flash[:success] = t "msg.update"
       render :show
     else
@@ -52,7 +53,7 @@ class Admin::ToursController < AdminController
     return if @tour.approved.empty?
 
     flash[:danger] = t "msg.action_fail"
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   private

@@ -1,0 +1,32 @@
+<% provide :title, t("signup.title") %>
+<h2><%= t "signup.title" %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "login-form"}) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="devise-field">
+    <%= f.label t("yourname") %><sub id="star"> * </sub>
+    <%= f.text_field :full_name, placeholder: t("yourname") %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label t("email") %><sub id="star"> * </sub>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t("email") %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label t("password") %><sub id="star" title= "<%= @minimum_password_length %> characters minimum"> * </sub>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: t("password") %>
+  </div>
+
+  <div class="devise-field">
+    <%= f.label t("confirm_password") %><sub id="star"> * </sub>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t("confirm_password") %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t("signup.submit"), class: "submit" %>
+  </div>
+<% end %>
+
+<center><%= render "devise/shared/links" %></center>

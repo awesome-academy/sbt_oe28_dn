@@ -77,9 +77,8 @@ textarea {
 }
 
 .search-form{
-  position: absolute;
-  top: 0;
-  right: 15px;
+  position: inherit;
+  padding-inline-start: 150px;
 }
 .index-tour{
   position: relative;

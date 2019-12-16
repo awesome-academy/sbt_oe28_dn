@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :load_tour, except: :index
   before_action :load_booking, except: %i(index new create)
   before_action :is_approved?, only: :destroy
   before_action :is_canceled?, only: :cancel
-  before_action :active_relation_blank, :correct_user, only: %i(show edit)
+  before_action :active_relation_blank, only: %i(show edit)
 
   def index
     @manages = current_user.bookings.newest.paginate(page: params[:page],
@@ -45,11 +46,10 @@ class BookingsController < ApplicationController
   def destroy
     if @booking.destroy
       flash[:success] = t "msg.del"
-      redirect_to @tour
     else
       flash[:danger] = t "msg.action_fail"
-      render :index
     end
+    redirect_back fallback_location: root_path
   end
 
   def cancel
@@ -59,30 +59,23 @@ class BookingsController < ApplicationController
     rescue StandardError
       flash[:danger] = t "msg.action_fail"
     end
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   protected
-
-  def correct_user
-    return if current_user.id == @booking.user_id
-
-    flash[:danger] = t "msg.user"
-    redirect_to tours_path
-  end
 
   def is_approved?
     return unless @booking.approved?
 
     flash[:danger] = t "msg.action_fail"
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   def is_canceled?
     return unless @booking.canceled?
 
     flash[:danger] = t "msg.action_fail"
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   private
@@ -92,7 +85,7 @@ class BookingsController < ApplicationController
   end
 
   def load_tour
-    @tour = Tour.find_by id: params[:tour_id]
+    @tour = Tour.find_by id: params[:tour_id].to_i
     return if @tour
 
     flash[:danger] = t "msg.tour_inv"
@@ -108,7 +101,8 @@ class BookingsController < ApplicationController
   end
 
   def active_relation_blank
-    @booking_relation = Booking.check_booking(params[:tour_id], params[:id])
+    @booking_relation = Booking.check_booking(params[:tour_id].to_i,
+      params[:id])
     return unless @booking_relation.blank?
 
     flash[:danger] = t "msg.booking_inv"

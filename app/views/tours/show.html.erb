@@ -4,7 +4,7 @@
     <h1><%= yield(:title) %></h1>
     <%= image_tag @tour.image.url %>
     <des><%= @tour.description %></des><hr/>
-    <content><%= @tour.content %></content>
+    <content><%= raw @tour.content %></content>
     <div><%= link_to new_tour_booking_path(@tour) do %>
       <button class="btn btn-primary btn-new-req"><%= t ".book" %>
       </button>

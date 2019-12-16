@@ -1,11 +1,13 @@
 class Booking < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :tour
 
   enum status: [:approved, :canceled, :in_progress]
 
   validates :name, presence: true, length: {minimum: Settings.length.name}
-  validates :phone, length: {minimum: Settings.length.phone}
+  validates :phone, presence: true, length: {minimum: Settings.length.phone}
 
   UPDATE_ATTRS = [:name, :phone].freeze
 

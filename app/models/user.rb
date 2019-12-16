@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  USER_PARAMS = %i(user_name email full_name password password_confirmation)
-                .freeze
+  devise :database_authenticatable, :registerable, :confirmable,
+    :recoverable, :rememberable, :validatable, :lockable,
+    :timeoutable, :trackable, :omniauthable,
+    omniauth_providers: [:facebook]
+  USER_PARAMS = %i(email full_name).freeze
+  USER_PARAMS_ADMIN = %i(email full_name password password_confirmation).freeze
 
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -11,35 +15,30 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   before_save{email.downcase!}
-  validates :user_name, presence: true, length: {maximum: Settings.username}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: {maximum: Settings.email},
-    format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  has_secure_password
-  validates :password, presence: true, length: {minimum:
-    Settings.password}, allow_nil: true
+  validates :full_name, presence: true, length: {maximum: Settings.username}
   enum role: [:admin, :user]
 
+  extend FriendlyId
+  friendly_id :full_name, use: [:slugged, :finders]
+
   scope :newest, ->{order created_at: :desc}
-
   class << self
-    def digest string
-      if cost = ActiveModel::SecurePassword.min_cost
-        BCrypt::Engine::MIN_COST
-      else
-        BCrypt::Engine.cost
+    def new_with_session params, session
+      super.tap do |user|
+        if data = session["devise.facebook_data"] &&
+                  session["devise.facebook_data"]["extra"]["raw_info"]
+          user.email = data["email"] if user.email.blank?
+        end
       end
-      BCrypt::Password.create string, cost: cost
     end
 
-    def new_token
-      SecureRandom.urlsafe_base64
+    def from_omniauth auth
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.full_name = auth.info.name
+        user.image = auth.info.image
+      end
     end
-  end
-
-  def authenticated? attribute, token
-    digest = send("#{attribute}_digest")
-    return false unless digest
-    BCrypt::Password.new(digest).is_password?(token)
   end
 end

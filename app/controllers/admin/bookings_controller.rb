@@ -1,10 +1,16 @@
 class Admin::BookingsController < AdminController
   before_action :load_booking, only: [:approve, :is_approved?]
+  before_action :load_trash_booking, only: [:destroy, :restore]
   before_action :is_approved?, only: :approve
   load_and_authorize_resource
 
   def index
     @bookings = Booking.newest.paginate(page: params[:page],
+      per_page: Settings.paginate.bookings)
+  end
+
+  def trash
+    @trashes = Booking.deleted.newest.paginate(page: params[:page],
       per_page: Settings.paginate.bookings)
   end
 
@@ -18,6 +24,15 @@ class Admin::BookingsController < AdminController
     @sum_ticket = @tickets.sum(:price).round(Settings.two)
   end
 
+  def restore
+    if @booking.restore
+      flash[:success] = t "msg.booking_restored"
+    else
+      flash[:danger] = t "msg.action_fail"
+    end
+    redirect_to admin_bookings_path
+  end
+
   def approve
     begin
       @booking.approved!
@@ -28,22 +43,40 @@ class Admin::BookingsController < AdminController
     redirect_to admin_bookings_path
   end
 
+  def destroy
+    begin
+      @booking.really_destroy!
+      flash[:success] = t "msg.del"
+    rescue StandardError
+      flash[:danger] = t "msg.action_fail"
+    end
+    redirect_back fallback_location: root_path
+  end
+
   protected
 
   def is_approved?
     return unless @booking.approved?
 
     flash[:danger] = t "msg.action_fail"
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   private
+
+  def load_trash_booking
+    @booking = Booking.deleted.find_by id: params[:id]
+    return if @booking
+
+    flash[:danger] = t "msg.booking_inv"
+    redirect_to admin_trashes_path
+  end
 
   def load_booking
     @booking = Booking.find_by id: params[:id]
     return if @booking
 
     flash[:danger] = t "msg.booking_inv"
-    redirect_to admin_tours_path
+    redirect_to admin_bookings_path
   end
 end

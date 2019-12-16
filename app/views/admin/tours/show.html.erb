@@ -4,6 +4,6 @@
     <h1><%= yield(:title) %></h1>
     <%= image_tag @tour.image.url %>
     <des><%= @tour.description %></des><hr/>
-    <content><%= @tour.content %></content>
+    <content><%= @tour.content.html_safe %></content>
   </div>
 </div>
