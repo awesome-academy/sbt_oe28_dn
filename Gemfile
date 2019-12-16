@@ -38,7 +38,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rubocop", "~> 0.54.0", require: false
   gem "rspec-rails", "~> 3.8"
-  gem "shoulda-matchers", "~> 3.1", ">= 3.1.1"
+  gem "shoulda-matchers"
   gem "sqlite3", "1.3.13"
 end
 

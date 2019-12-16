@@ -32,7 +32,7 @@ RSpec.describe ReviewsController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it "status is redirect and redirect" do
+      it "status is true when render" do
           expect(response).to have_http_status 200
       end
 
